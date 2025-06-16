@@ -39,6 +39,7 @@
         color: var(--color-dark);
         line-height: 1.6;
         background-color: var(--color-light);
+        -webkit-tap-highlight-color: transparent;
       }
 
       img {
@@ -110,7 +111,8 @@
         transition: transform 0.1s ease, box-shadow 0.1s ease;
       }
 
-      .btn--primary:active {
+      .btn--primary:active,
+      .btn--primary.touch-active {
         transform: translateY(2px);
         box-shadow: 0 1px 0 0 var(--color-secondary);
       }
@@ -127,6 +129,7 @@
         align-items: center;
         padding: var(--spacing-sm) var(--spacing-md);
         border-bottom: 1px solid #eee;
+        position: relative;
       }
 
       .nav__logo {
@@ -151,6 +154,42 @@
       .nav__item--active {
         font-weight: bold;
         text-decoration: underline;
+      }
+
+      .nav__toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+      }
+
+      .nav__toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--color-dark);
+        border-radius: 2px;
+      }
+
+      .nav__menu--mobile {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+        border-top: 1px solid #eee;
+      }
+
+      .nav__menu--mobile.active {
+        display: flex;
+      }
+
+      .nav__menu--mobile .btn--primary {
+        width: 100%;
+        margin-top: var(--spacing-sm);
       }
 
       .hero {
@@ -254,19 +293,42 @@
         .hero {
           padding: var(--spacing-md);
         }
+
+        .nav__menu {
+          display: none;
+        }
+
+        .nav__toggle {
+          display: flex;
+        }
       }
     </style>
   </head>
-
   <body>
     <nav class="nav container">
       <div class="nav__logo">QUELLI & CO</div>
+      <div
+        class="nav__toggle"
+        onclick="document.querySelector('.nav__menu--mobile').classList.toggle('active')"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <ul class="nav__menu">
         <li class="nav__item nav__item--active">Home</li>
         <li class="nav__item">About</li>
         <li class="nav__item">Podcast</li>
         <li class="nav__item">Blog</li>
         <li class="nav__item">Contact</li>
+      </ul>
+      <ul class="nav__menu nav__menu--mobile">
+        <li class="nav__item nav__item--active">Home</li>
+        <li class="nav__item">About</li>
+        <li class="nav__item">Podcast</li>
+        <li class="nav__item">Blog</li>
+        <li class="nav__item">Contact</li>
+        <li><button class="btn btn--primary">Shop →</button></li>
       </ul>
       <button class="btn btn--primary">Shop →</button>
     </nav>
@@ -342,5 +404,19 @@
         <p class="text">No cringe. No cliches.</p>
       </div>
     </section>
+
+    <script>
+      document.querySelectorAll(".btn--primary").forEach((btn) => {
+        btn.addEventListener("touchstart", () => {
+          btn.classList.add("touch-active");
+        });
+        btn.addEventListener("touchend", () => {
+          btn.classList.remove("touch-active");
+        });
+        btn.addEventListener("touchcancel", () => {
+          btn.classList.remove("touch-active");
+        });
+      });
+    </script>
   </body>
 </html>
