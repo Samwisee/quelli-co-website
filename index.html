@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quelli & Co</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-primary: #f5a623;
+        --color-secondary: #004d40;
+        --color-dark: #1a1a1a;
+        --color-light: #fff;
+        --color-muted: #666;
+        --color-accent: #e74c3c;
+
+        --font-base: "Inter", sans-serif;
+        --font-heading: "Georgia", serif;
+
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 2rem;
+        --spacing-lg: 4rem;
+        --max-width: 1140px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-base);
+        color: var(--color-dark);
+        line-height: 1.6;
+        background-color: var(--color-light);
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: var(--spacing-lg);
+      }
+
+      .heading {
+        font-family: var(--font-heading);
+        margin-bottom: var(--spacing-sm);
+        line-height: 1.2;
+      }
+
+      .heading--xl {
+        font-size: 3rem;
+        font-weight: 700;
+      }
+
+      .heading--l {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .text {
+        font-size: 1rem;
+      }
+
+      .text--lead {
+        font-size: 1.125rem;
+        color: var(--color-muted);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .text--md {
+        font-weight: 500;
+      }
+
+      .btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background 0.3s ease;
+      }
+
+      .btn--primary {
+        background: var(--color-primary);
+        color: var(--color-dark);
+        border: 2px solid var(--color-secondary);
+        box-shadow: 0 3px 0 0 var(--color-secondary);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      }
+
+      .btn--primary:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 0 0 var(--color-secondary);
+      }
+
+      .btn--secondary {
+        background: transparent;
+        color: var(--color-dark);
+        border: 2px solid var(--color-dark);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-bottom: 1px solid #eee;
+      }
+
+      .nav__logo {
+        font-family: var(--font-heading);
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .nav__menu {
+        list-style: none;
+        display: flex;
+        gap: var(--spacing-md);
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav__item {
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .nav__item--active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      .hero {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+        padding: var(--spacing-lg);
+        align-items: center;
+      }
+
+      .hero__content {
+        flex: 1 1 50%;
+      }
+
+      .hero__image {
+        flex: 1 1 40%;
+        text-align: center;
+      }
+
+      .section {
+        padding: var(--spacing-lg) 0;
+      }
+
+      .section--light {
+        background: #f9f9f9;
+      }
+
+      .section--white {
+        background: #fff;
+      }
+
+      .section--teal {
+        background: var(--color-secondary);
+        color: var(--color-light);
+      }
+
+      .section__label {
+        text-transform: uppercase;
+        color: var(--color-muted);
+        font-size: 0.875rem;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .podcast {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+      }
+
+      .podcast__img {
+        width: 100%;
+        max-width: 200px;
+        justify-self: center;
+      }
+
+      .podcast__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-top: var(--spacing-sm);
+      }
+
+      .feature-list {
+        list-style: disc inside;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .quote {
+        font-style: italic;
+        margin-bottom: var(--spacing-md);
+        color: var(--color-accent);
+      }
+
+      .cta-banner {
+        background: var(--color-primary);
+        color: var(--color-light);
+        padding: var(--spacing-md);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+
+      @media (max-width: 768px) {
+        .hero,
+        .podcast {
+          flex-direction: column;
+          display: flex;
+        }
+
+        .hero__content,
+        .hero__image,
+        .podcast__content,
+        .podcast__img {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+
+        .container,
+        .hero {
+          padding: var(--spacing-md);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav container">
+      <div class="nav__logo">QUELLI & CO</div>
+      <ul class="nav__menu">
+        <li class="nav__item nav__item--active">Home</li>
+        <li class="nav__item">About</li>
+        <li class="nav__item">Podcast</li>
+        <li class="nav__item">Blog</li>
+        <li class="nav__item">Contact</li>
+      </ul>
+      <button class="btn btn--primary">Shop →</button>
+    </nav>
+
+    <section class="hero">
+      <div class="container hero__content">
+        <h1 class="heading heading--xl">Emotional Intelligence</h1>
+        <p class="subtitle">Master your mind, move your world</p>
+        <p class="text text--lead">
+          Science-informed tools for self-awareness, connection, and emotional
+          skill. At Quelli & Co, we believe emotional mastery should be
+          practical, science-based, and quietly transformative.
+        </p>
+      </div>
+      <div class="container hero__image">
+        <img src="hero.png" alt="Hero graphic" />
+      </div>
+    </section>
+
+    <section class="section section--light">
+      <div class="container">
+        <div class="section__label">What we offer</div>
+        <h2 class="heading heading--l">The Podcast</h2>
+        <div class="podcast">
+          <img src="podcast.png" alt="Podcast artwork" class="podcast__img" />
+          <div class="podcast__content">
+            <p class="text text--md">Conversations that make you feel seen</p>
+            <p class="text">
+              We speak with researchers, clinicians, and everyday people about
+              emotional habits that shape our lives.
+            </p>
+            <div class="podcast__buttons">
+              <button class="btn btn--primary">Listen to Episode One →</button>
+              <button class="btn btn--secondary">
+                Subscribe for future episodes →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white">
+      <div class="container">
+        <h2 class="heading heading--l">Emotional Skill Tool</h2>
+        <p class="text text--lead">Small tools. Real impact.</p>
+        <ul class="feature-list">
+          <li>Map your emotional style</li>
+          <li>Recognise patterns and triggers</li>
+          <li>Communicate more clearly</li>
+        </ul>
+        <blockquote class="quote">
+          Emotional awareness is the starting point — not the final destination.
+        </blockquote>
+        <div class="cta-banner">
+          <p class="cta-banner__text">
+            Coming soon: “What’s Your Emotional Operating Style?”
+          </p>
+          <button class="btn btn--primary">Sign up for early access →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--teal">
+      <div class="container">
+        <h2 class="heading heading--l">
+          The Emotional Intelligence Curriculum
+        </h2>
+        <p class="text">No cringe. No cliches.</p>
+      </div>
+    </section>
+  </body>
+</html>
