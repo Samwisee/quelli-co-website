@@ -1,0 +1,136 @@
+/* =============================
+   QUELLI & CO — Index (Home)
+   Hero + page-specific tweaks
+   ============================= */
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-block: clamp(56px, 8vw, 96px);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.hero__copy {
+  display: grid;
+  gap: clamp(8px, 1.2vw, 16px);
+}
+
+.hero__headline {
+  font-size: clamp(32px, 5.2vw, 64px);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.hero__art {
+  display: grid;
+  place-items: end;
+  position: relative;
+}
+
+.hero__img {
+  max-width: 400px;
+  object-fit: fit;
+  border: none;
+  box-shadow: none;
+}
+
+/* (optional geometric art blocks if used) */
+.art {
+  position: absolute;
+  border-radius: 16px;
+}
+.art--square.art--yellow {
+  width: 239px;
+  height: 239px;
+  left: 8px;
+  top: 0;
+  background: #faab26;
+}
+.art--round {
+  width: 239px;
+  height: 239px;
+  right: 0;
+  top: 0;
+  background: #d9d9d9;
+  border-radius: 150px 0 150px 150px;
+}
+.art--teal {
+  width: 239px;
+  height: 239px;
+  right: 16px;
+  top: 260px;
+  background: #1a8581;
+}
+.badge {
+  position: absolute;
+  right: 40px;
+  bottom: 12px;
+  width: 220px;
+  height: 110px;
+  border-radius: 100px;
+  border: 5px solid var(--orange);
+  transform: rotate(90deg);
+  background: #fff;
+}
+
+/* ---------- Emotional Skill Tool (toolkit) ---------- */
+.toolkit .tool-art {
+  align-self: end; /* align this grid item to the bottom of the row */
+  display: flex; /* center the image horizontally */
+  justify-content: center;
+}
+.toolkit .tool-art img {
+  display: block;
+  max-width: min(520px, 100%);
+  height: auto;
+}
+
+/* ---------- Newsletter Form ---------- */
+#newsletter .cta-bar {
+  justify-content: center; /* center the input + button row */
+}
+#newsletter {
+  text-align: center; /* center text content in the section */
+}
+
+/* ---------- Responsive (index-only) ---------- */
+@media (max-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__art {
+    min-height: clamp(260px, 42vw, 420px);
+    place-items: center;
+  }
+  .hero__img {
+    width: min(680px, 86vw);
+    height: auto;
+  }
+
+  .toolkit .tool-art {
+    align-self: end;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-block: 48px;
+  }
+  .hero__art {
+    order: 2;
+    place-items: center;
+    min-height: 0;
+  }
+  .hero__img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+}

@@ -1,422 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quelli & Co</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QUELLI & CO — Emotional Intelligence for Real Life</title>
+    <meta
+      name="description"
+      content="Science-informed tools, a friendly podcast, and a practical curriculum for emotional intelligence."
+    />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;700&family=Karla:wght@400;700&family=Playfair+Display:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --color-primary: #f5a623;
-        --color-secondary: #004d40;
-        --color-dark: #1a1a1a;
-        --color-light: #fff;
-        --color-muted: #666;
-        --color-accent: #e74c3c;
 
-        --font-base: "Inter", sans-serif;
-        --font-heading: "Georgia", serif;
-
-        --spacing-xs: 0.5rem;
-        --spacing-sm: 1rem;
-        --spacing-md: 2rem;
-        --spacing-lg: 4rem;
-        --max-width: 1140px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: var(--font-base);
-        color: var(--color-dark);
-        line-height: 1.6;
-        background-color: var(--color-light);
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-
-      .container {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: var(--spacing-lg);
-      }
-
-      .heading {
-        font-family: var(--font-heading);
-        margin-bottom: var(--spacing-sm);
-        line-height: 1.2;
-      }
-
-      .heading--xl {
-        font-size: 3rem;
-        font-weight: 700;
-      }
-
-      .heading--l {
-        font-size: 2rem;
-        font-weight: 700;
-      }
-
-      .subtitle {
-        font-size: 1.25rem;
-        font-weight: 500;
-        margin-bottom: var(--spacing-sm);
-      }
-
-      .text {
-        font-size: 1rem;
-      }
-
-      .text--lead {
-        font-size: 1.125rem;
-        color: var(--color-muted);
-        margin-bottom: var(--spacing-md);
-      }
-
-      .text--md {
-        font-weight: 500;
-      }
-
-      .btn {
-        padding: var(--spacing-xs) var(--spacing-md);
-        font-size: 1rem;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        font-weight: 500;
-        transition: background 0.3s ease;
-      }
-
-      .btn--primary {
-        background: var(--color-primary);
-        color: var(--color-dark);
-        border: 2px solid var(--color-secondary);
-        box-shadow: 0 3px 0 0 var(--color-secondary);
-        text-transform: uppercase;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: transform 0.1s ease, box-shadow 0.1s ease;
-      }
-
-      .btn--primary:active,
-      .btn--primary.touch-active {
-        transform: translateY(2px);
-        box-shadow: 0 1px 0 0 var(--color-secondary);
-      }
-
-      .btn--secondary {
-        background: transparent;
-        color: var(--color-dark);
-        border: 2px solid var(--color-dark);
-      }
-
-      .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: var(--spacing-sm) var(--spacing-md);
-        border-bottom: 1px solid #eee;
-        position: relative;
-      }
-
-      .nav__logo {
-        font-family: var(--font-heading);
-        font-weight: bold;
-        font-size: 1.2rem;
-      }
-
-      .nav__menu {
-        list-style: none;
-        display: flex;
-        gap: var(--spacing-md);
-        margin: 0;
-        padding: 0;
-      }
-
-      .nav__item {
-        cursor: pointer;
-        font-size: 1rem;
-      }
-
-      .nav__item--active {
-        font-weight: bold;
-        text-decoration: underline;
-      }
-
-      .nav__toggle {
-        display: none;
-        flex-direction: column;
-        gap: 4px;
-        cursor: pointer;
-      }
-
-      .nav__toggle span {
-        width: 25px;
-        height: 3px;
-        background: var(--color-dark);
-        border-radius: 2px;
-      }
-
-      .nav__menu--mobile {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        padding: var(--spacing-md);
-        gap: var(--spacing-sm);
-        border-top: 1px solid #eee;
-      }
-
-      .nav__menu--mobile.active {
-        display: flex;
-      }
-
-      .nav__menu--mobile .btn--primary {
-        width: 100%;
-        margin-top: var(--spacing-sm);
-      }
-
-      .hero {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--spacing-md);
-        padding: var(--spacing-lg);
-        align-items: center;
-      }
-
-      .hero__content {
-        flex: 1 1 50%;
-      }
-
-      .hero__image {
-        flex: 1 1 40%;
-        text-align: center;
-      }
-
-      .section {
-        padding: var(--spacing-lg) 0;
-      }
-
-      .section--light {
-        background: #f9f9f9;
-      }
-
-      .section--white {
-        background: #fff;
-      }
-
-      .section--teal {
-        background: var(--color-secondary);
-        color: var(--color-light);
-      }
-
-      .section__label {
-        text-transform: uppercase;
-        color: var(--color-muted);
-        font-size: 0.875rem;
-        margin-bottom: var(--spacing-xs);
-      }
-
-      .podcast {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--spacing-md);
-        align-items: flex-start;
-      }
-
-      .podcast__img {
-        width: 100%;
-        max-width: 200px;
-        justify-self: center;
-      }
-
-      .podcast__buttons {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-        margin-top: var(--spacing-sm);
-      }
-
-      .feature-list {
-        list-style: disc inside;
-        margin-bottom: var(--spacing-md);
-      }
-
-      .quote {
-        font-style: italic;
-        margin-bottom: var(--spacing-md);
-        color: var(--color-accent);
-      }
-
-      .cta-banner {
-        background: var(--color-primary);
-        color: var(--color-light);
-        padding: var(--spacing-md);
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-      }
-
-      @media (max-width: 768px) {
-        .hero,
-        .podcast {
-          flex-direction: column;
-          display: flex;
-        }
-
-        .hero__content,
-        .hero__image,
-        .podcast__content,
-        .podcast__img {
-          flex: 1 1 100%;
-          max-width: 100%;
-        }
-
-        .container,
-        .hero {
-          padding: var(--spacing-md);
-        }
-
-        .nav__menu {
-          display: none;
-        }
-
-        .nav__toggle {
-          display: flex;
-        }
-      }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/theme.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
   </head>
-  <body>
-    <nav class="nav container">
-      <div class="nav__logo">QUELLI & CO</div>
-      <div
-        class="nav__toggle"
-        onclick="document.querySelector('.nav__menu--mobile').classList.toggle('active')"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="nav__menu">
-        <li class="nav__item nav__item--active">Home</li>
-        <li class="nav__item">About</li>
-        <li class="nav__item">Podcast</li>
-        <li class="nav__item">Blog</li>
-        <li class="nav__item">Contact</li>
-      </ul>
-      <ul class="nav__menu nav__menu--mobile">
-        <li class="nav__item nav__item--active">Home</li>
-        <li class="nav__item">About</li>
-        <li class="nav__item">Podcast</li>
-        <li class="nav__item">Blog</li>
-        <li class="nav__item">Contact</li>
-        <li><button class="btn btn--primary">Shop →</button></li>
-      </ul>
-      <button class="btn btn--primary">Shop →</button>
-    </nav>
+  <body class="site">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <section class="hero">
-      <div class="container hero__content">
-        <h1 class="heading heading--xl">Emotional Intelligence</h1>
-        <p class="subtitle">Master your mind, move your world</p>
-        <p class="text text--lead">
-          Science-informed tools for self-awareness, connection, and emotional
-          skill. At Quelli & Co, we believe emotional mastery should be
-          practical, science-based, and quietly transformative.
-        </p>
-      </div>
-      <div class="container hero__image">
-        <img src="assets/hero.png" alt="Hero graphic" />
-      </div>
-    </section>
+    <!-- ================= Header ================= -->
+    <header class="header" role="banner">
+      <div class="container header__inner">
+        <a class="brand" href="/">QUELLI &amp; CO</a>
 
-    <section class="section section--light">
-      <div class="container">
-        <div class="section__label">What we offer</div>
-        <h2 class="heading heading--l">The Podcast</h2>
-        <div class="podcast">
-          <img
-            src="assets/podcast.png"
-            alt="Podcast artwork"
-            class="podcast__img"
-          />
-          <div class="podcast__content">
-            <p class="text text--md">Conversations that make you feel seen</p>
-            <p class="text">
-              We speak with researchers, clinicians, and everyday people about
-              emotional habits that shape our lives.
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav id="primary-nav" class="nav" aria-label="Primary">
+          <ul class="nav__list">
+            <li><a class="nav__link is-active" href="#home">Home</a></li>
+            <li><a class="nav__link" href="#about">About</a></li>
+            <li><a class="nav__link" href="#podcast">Podcast</a></li>
+            <li><a class="nav__link" href="#toolkit">Toolkit</a></li>
+            <li><a class="nav__link" href="#lab">EI Lab</a></li>
+            <li><a class="nav__link" href="#blog">Blog</a></li>
+            <li><a class="nav__link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================= Hero ================= -->
+    <main id="main">
+      <section id="home" class="section hero">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <h1 class="eyebrow">Quelli &amp; Co</h1>
+            <!-- <h1 class="display">Emotional Intelligence</h1> -->
+            <h2 class="headline hero__headline">Master your mind,</h2>
+            <h2 class="headline hero__headline">Change your world.</h2>
+            <!-- <p class="kicker">
+              Science-informed tools for self-awareness, connection, and
+              emotional skill.
             </p>
-            <div class="podcast__buttons">
-              <button class="btn btn--primary">Listen to Episode One →</button>
-              <button class="btn btn--secondary">
-                Subscribe for future episodes →
+            <p>
+              At Quelli &amp; Co., we believe emotional intelligence isn’t just
+              a buzzword — it’s one of the most powerful skills a person can
+              develop. Drawing on neuroscience, developmental psychology, and
+              decades of clinical experience, we’ve created tools that teach how
+              emotion really works — and how to refine it into skill.
+            </p> -->
+          </div>
+
+          <!-- Figma hero geometry (responsive recreation) -->
+          <div class="hero__art" aria-hidden="true">
+            <img class="hero__img" src="assets/hero_image.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Cream band per Figma “Rectangle 35/16” -->
+      <div class="band band--cream"></div>
+
+      <!-- ================= What We Offer ================= -->
+      <section class="section section--cream whatweoffer">
+        <div class="container-2">
+          <h2 class="title-xl center" id="offer-heading">What We Offer</h2>
+
+          <div class="carousel" aria-labelledby="offer-heading" data-carousel>
+            <div class="carousel__track" data-track>
+              <article class="card card--round">
+                <img
+                  class="card__img"
+                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop"
+                  alt="Podcast artwork"
+                />
+                <h3 class="card__title">
+                  A whole-brain approach to emotional intelligence
+                </h3>
+                <p class="card__body">
+                  Emotions aren’t soft. They’re structured signals. Learn to
+                  read them and act with intention.
+                </p>
+              </article>
+              <article class="card card--round">
+                <img
+                  class="card__img"
+                  src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=600&auto=format&fit=crop"
+                  alt="Modern life"
+                />
+                <h3 class="card__title">Designed for modern life</h3>
+                <p class="card__body">
+                  Everyday application: work, relationships, parenting,
+                  leadership.
+                </p>
+              </article>
+              <article class="card card--round">
+                <img
+                  class="card__img"
+                  src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=600&auto=format&fit=crop"
+                  alt="Growth"
+                />
+                <h3 class="card__title">Tools that grow with you</h3>
+                <p class="card__body">
+                  From literacy to self-regulation and decision-making, evolve
+                  with awareness.
+                </p>
+              </article>
+              <article class="card card--round">
+                <img
+                  class="card__img"
+                  src="https://images.unsplash.com/photo-1581093588401-16ec8a064fe6?q=80&w=600&auto=format&fit=crop"
+                  alt="Science with soul"
+                />
+                <h3 class="card__title">Science with soul</h3>
+                <p class="card__body">
+                  Sharp, usable ideas. No fluff — just grounded insight and
+                  thoughtful design.
+                </p>
+              </article>
+            </div>
+
+            <div class="carousel__controls">
+              <button class="carousel__btn" data-prev aria-label="Previous">
+                ‹
+              </button>
+              <div class="carousel__dots" data-dots aria-hidden="true"></div>
+              <button class="carousel__btn" data-next aria-label="Next">
+                ›
               </button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section section--white">
-      <div class="container">
-        <h2 class="heading heading--l">Emotional Skill Tool</h2>
-        <p class="text text--lead">Small tools. Real impact.</p>
-        <ul class="feature-list">
-          <li>Map your emotional style</li>
-          <li>Recognise patterns and triggers</li>
-          <li>Communicate more clearly</li>
-        </ul>
-        <blockquote class="quote">
-          Emotional awareness is the starting point — not the final destination.
-        </blockquote>
-        <div class="cta-banner">
-          <p class="cta-banner__text">
-            Coming soon: “What’s Your Emotional Operating Style?”
+        <!-- ===== Podcast callout (matches Figma sizing / copy) ===== -->
+        <div id="podcast" class="container podcast section">
+          <!-- <p class="eyebrow center">WHAT WE OFFER</p> -->
+          <h3 class="title-xl center">The Podcast</h3>
+
+          <div class="grid grid--2">
+            <div>
+              <img
+                src="assets/podcast.png"
+                alt="Podcast microphone with warm bokeh"
+              />
+            </div>
+            <div class="podcast__copy">
+              <h4 class="h5">Conversations that make you feel seen</h4>
+              <p>
+                We speak with researchers, clinicians, and everyday people about
+                the emotional habits that shape our lives — and how to shift
+                them with intention.
+              </p>
+              <div class="row">
+                <a class="btn btn--primary" href="#">
+                  Listen to Episode One
+                  <span class="btn__arrow" aria-hidden="true"></span>
+                </a>
+                <a class="btn btn--ghost" href="#">
+                  Subscribe for future episodes
+                  <span class="btn__arrow" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Emotional Skill Tool ================= -->
+      <section id="toolkit" class="section toolkit" style="padding-bottom: 0">
+        <div class="container grid grid--2 grid--center">
+          <div>
+            <h3 class="title-l">Emotional Skill Tool</h3>
+            <h4 class="h5">Small tools. Real impact.</h4>
+            <p>
+              We’re building a growing library of interactive resources —
+              including guided self-tests, reflection kits, and micro-courses —
+              to help you:
+            </p>
+            <ul class="bullets">
+              <li>Map your emotional style</li>
+              <li>Recognise patterns and triggers</li>
+              <li>Communicate more clearly</li>
+            </ul>
+          </div>
+          <div class="tool-art">
+            <img src="assets/app.png" alt="Phone with EI tool UI" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Coming Soon panel ================= -->
+      <section class="section section--parchment">
+        <div class="container">
+          <div class="panel panel--rust">
+            <h3 class="title-l center" style="color: #fdf6ec">Coming Soon</h3>
+            <h4 class="h5 center" style="color: #fdf6ec">
+              Mastering Emotional Intelligence: A Science-Based Guide
+            </h4>
+
+            <div class="grid grid--2">
+              <img
+                src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1200&auto=format&fit=crop"
+                alt="Open book and coffee"
+              />
+              <div>
+                <p>
+                  A practical introduction to the emotional system that runs
+                  your life — and how to work with it. Emotions are your brain’s
+                  best guesses, built from past experience, body signals, and
+                  context. They’re not noise. They’re data.
+                </p>
+                <p>
+                  Learn to recognise what you’re feeling (in real time),
+                  understand what emotions are trying to tell you, and respond
+                  with clarity — for yourself and others.
+                </p>
+
+                <form
+                  class="cta-bar"
+                  onsubmit="return window.site.subscribe(event)"
+                >
+                  <label class="sr-only" for="emailSoon">Email</label>
+                  <input
+                    id="emailSoon"
+                    class="input"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    required
+                  />
+                  <button class="btn btn--primary" type="submit">
+                    Notify Me
+                    <span class="btn__arrow" aria-hidden="true"></span>
+                  </button>
+                </form>
+                <p class="muted center">
+                  We’ll let you know the moment it’s ready.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Teal band (rounded corner) ================= -->
+      <section id="lab" class="section section--teal">
+        <div class="container">
+          <h3 class="title-xl center" style="color: #fdf6ec">
+            The Emotional Intelligence Curriculum
+          </h3>
+
+          <div class="grid grid--2 grid--center">
+            <img
+              src="assets/cirriculum.png"
+              alt="Colorful cards for curriculum"
+            />
+            <div>
+              <h4 class="h5" style="color: #fdf6ec">
+                No cringe. No clichés. Just science and heart.
+              </h4>
+              <p class="light">
+                Launching in 2026, our signature curriculum brings together
+                clinical insights and real-world relevance — designed for
+                therapists, educators, coaches, and curious humans.
+              </p>
+              <a class="btn btn--primary" href="#">
+                Get updates on the curriculum launch
+                <span class="btn__arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Who We’re For ================= -->
+      <section class="section">
+        <div class="container">
+          <h3 class="title-xl">Who We’re For</h3>
+          <div class="tiles">
+            <div class="tile">
+              People who want to understand why they react the way they do
+            </div>
+            <div class="tile">
+              Adults navigating emotion, relationships, or life transitions
+            </div>
+            <div class="tile">
+              Clinicians, coaches, and educators building emotional skill in
+              others
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= About Us ================= -->
+      <section id="about" class="section">
+        <div class="container">
+          <h3 class="title-xl">About Us</h3>
+
+          <div class="people">
+            <article class="person">
+              <img
+                class="person__img"
+                src="assets/luke_cheney.png"
+                alt="Portrait of Dr. Lukas Cheney"
+              />
+              <div class="person__meta">
+                <div class="person__name">DR. LUKAS CHENEY</div>
+                <div class="person__desc">
+                  Psychiatrist, psychotherapist, and longtime explorer of the
+                  brain–mind connection.
+                </div>
+              </div>
+            </article>
+
+            <article class="person">
+              <img
+                class="person__img"
+                src="assets/kat_kahler.png"
+                alt="Portrait of Kat Kahler"
+              />
+              <div class="person__meta">
+                <div class="person__name">KAT KAHLER</div>
+                <div class="person__desc">
+                  Therapist, nurse, creative director — and passionate advocate
+                  for making deep insights feel human.
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="quote">
+            <div class="quote__lead">
+              We’ve seen how limited the 50-minute therapy model can be.
+            </div>
+            <div class="quote__brand">QUELLI &amp; CO.</div>
+            <div class="quote__tag">Emotional intelligence for real life.</div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= Join ================= -->
+      <section id="newsletter" class="section section--cream">
+        <div class="container center">
+          <h3 class="title-xl">Join the List</h3>
+          <p>
+            Want early access to our first tools, new podcast episodes, and
+            thoughtful insights on emotional intelligence?
           </p>
-          <button class="btn btn--primary">Sign up for early access →</button>
+
+          <form class="cta-bar" onsubmit="return window.site.subscribe(event)">
+            <label class="sr-only" for="emailJoin">Type your email</label>
+            <input
+              id="emailJoin"
+              class="input"
+              name="email"
+              type="email"
+              placeholder="Type your email"
+              required
+            />
+            <button class="btn btn--primary" type="submit">
+              Subscribe <span class="btn__arrow" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <p class="accent">
+            No spam. Just beautifully crafted things, every so often.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= Footer (dark band like Figma Rectangle 32) ================= -->
+    <footer id="contact" class="footer" role="contentinfo">
+      <div class="container center">
+        <div class="footer__title">QUELLI &amp; CO</div>
+        <div class="footer__line">Emotional intelligence for real life.</div>
+        <div class="footer__line">
+          Melbourne-based. Clinically grounded. Warm by design.
+        </div>
+        <div class="footer__links">
+          <a href="#">Privacy</a> • <a href="#">Terms</a> •
+          <a href="#contact">Contact</a>
         </div>
       </div>
-    </section>
+    </footer>
 
-    <section class="section section--teal">
-      <div class="container">
-        <h2 class="heading heading--l">
-          The Emotional Intelligence Curriculum
-        </h2>
-        <p class="text">No cringe. No cliches.</p>
-      </div>
-    </section>
-
-    <script>
-      document.querySelectorAll(".btn--primary").forEach((btn) => {
-        btn.addEventListener("touchstart", () => {
-          btn.classList.add("touch-active");
-        });
-        btn.addEventListener("touchend", () => {
-          btn.classList.remove("touch-active");
-        });
-        btn.addEventListener("touchcancel", () => {
-          btn.classList.remove("touch-active");
-        });
-      });
-    </script>
+    <script src="assets/site.js" defer></script>
   </body>
 </html>
