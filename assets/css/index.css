@@ -66,8 +66,12 @@
   border-radius: 999px;
   font-weight: 700;
   z-index: 9999;
-  pointer-events: none;
+  /* Allow clicks on the visual badge (we handle the hit area in JS). */
+  pointer-events: auto;
+  cursor: pointer;
 }
+
+.ab-toggle { display: none; }
 
 .hero__img {
   max-width: 100%;

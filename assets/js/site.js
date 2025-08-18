@@ -155,7 +155,8 @@ window.site = (function () {
   const q = pickFromQuery();
   let variant = q || localStorage.getItem(KEY);
   if (!variant) {
-    variant = pickRandom();
+    // default to A unless query param overrides
+    variant = 'A';
     localStorage.setItem(KEY, variant);
   }
   if (q && choices.includes(q)) localStorage.setItem(KEY, q);
@@ -169,10 +170,49 @@ window.site = (function () {
     window.quelliAB = {
       variant,
       set: (v) => {
+        if (!choices.includes(v)) return;
         localStorage.setItem(KEY, v);
+        variant = v;
         applyVariant(v);
+        const btn = document.querySelector('.ab-toggle');
+        if (btn) btn.setAttribute('aria-pressed', String(v === 'B'));
       },
+      toggle: () => {
+        const next = variant === 'A' ? 'B' : 'A';
+        window.quelliAB.set(next);
+      }
     };
+
+  // Note: the explicit '.ab-toggle' button was removed from the DOM.
+  // The document-level badge click handler below still provides a way
+  // to toggle variants by clicking the bottom-right badge.
+
+    // Allow clicking the small bottom-right AB badge (rendered via ::before)
+    // Pseudo-elements can't receive events, so listen on document and
+    // interpret clicks that land in the badge area (within 64px of the
+    // bottom-right corner). This preserves the constraint of not adding
+    // new DOM nodes while making the visual badge interactive.
+    function onDocClick(e) {
+      try {
+        const x = e.clientX;
+        const y = e.clientY;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        // badge is positioned at right:12px, bottom:12px with padding; use a 64px hit area
+        const hitMargin = 64;
+        if (x >= vw - hitMargin && y >= vh - hitMargin) {
+          // ensure our AB utility exists before toggling
+          if (window.quelliAB && typeof window.quelliAB.toggle === 'function') {
+            window.quelliAB.toggle();
+            e.preventDefault();
+          }
+        }
+      } catch (err) {
+        // silent
+      }
+    }
+
+    document.addEventListener('click', onDocClick);
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", init);
