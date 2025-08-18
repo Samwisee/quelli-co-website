@@ -121,6 +121,64 @@ window.site = (function () {
   return api;
 })();
 
+// Simple A/B test utility for the home 'What is EI' section
+(function abTest() {
+  const KEY = "quelli_ab_variant";
+  const PARAM = "ab";
+  const choices = ["A", "B"];
+
+  function pickFromQuery() {
+    const params = new URLSearchParams(location.search);
+    const v = params.get(PARAM);
+    if (!v) return null;
+    if (v.toLowerCase() === "reset") {
+      localStorage.removeItem(KEY);
+      return null;
+    }
+    if (choices.includes(v.toUpperCase())) return v.toUpperCase();
+    return null;
+  }
+
+  function pickRandom() {
+    return choices[Math.floor(Math.random() * choices.length)];
+  }
+
+  function applyVariant(v) {
+    document.documentElement.setAttribute("data-ab-variant", v);
+    // show/hide blocks
+    document.querySelectorAll(".ab-variant").forEach((el) => {
+      el.style.display = el.getAttribute("data-variant") === v ? "" : "none";
+    });
+  }
+
+  // decide
+  const q = pickFromQuery();
+  let variant = q || localStorage.getItem(KEY);
+  if (!variant) {
+    variant = pickRandom();
+    localStorage.setItem(KEY, variant);
+  }
+  if (q && choices.includes(q)) localStorage.setItem(KEY, q);
+
+  // apply after DOM ready
+  function init() {
+    if (!document.querySelectorAll) return;
+    if (!document.querySelectorAll(".ab-variant").length) return;
+    applyVariant(variant);
+    // expose for debugging
+    window.quelliAB = {
+      variant,
+      set: (v) => {
+        localStorage.setItem(KEY, v);
+        applyVariant(v);
+      },
+    };
+  }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+
 // Rive animation loader (initialise decorative animation if available)
 (function initRiveLook() {
   const CANVAS_ID = "look-rive";

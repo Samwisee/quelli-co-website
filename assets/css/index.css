@@ -49,6 +49,26 @@
   z-index: 2; /* ensure image overlays decorative canvas */
 }
 
+/* A/B variants: show by default; JS will hide the unused variant when applied */
+.ab-variant {
+  display: block;
+}
+
+/* small debug badge when variant is applied */
+[data-ab-variant]::before {
+  content: attr(data-ab-variant);
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  z-index: 9999;
+  pointer-events: none;
+}
+
 .hero__img {
   max-width: 100%;
   width: min(520px, 46vw);
