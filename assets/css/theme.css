@@ -29,6 +29,8 @@
 
   /* Layout */
   --container: 1140px;
+  /* header offset used for anchor scroll-margin-top */
+  --header-offset: 84px;
 }
 
 /* ---------- Base ---------- */
@@ -162,6 +164,11 @@ a {
   max-width: var(--container);
   margin: auto;
   padding: 0 20px;
+}
+.container-2 {
+  max-width: calc(var(--container) - 160px);
+  margin: auto;
+  padding: 0 24px;
 }
 .section {
   padding: 72px 0;
@@ -314,9 +321,9 @@ a {
   height: 1em;
   margin-left: 6px;
   background: currentColor;
-  -webkit-mask: url("assets/icons/arrow-right.svg") no-repeat center;
+  -webkit-mask: url("../icons/arrow-right.svg") no-repeat center;
   -webkit-mask-size: contain;
-  mask: url("assets/icons/arrow-right.svg") no-repeat center;
+  mask: url("../icons/arrow-right.svg") no-repeat center;
   mask-size: contain;
 }
 

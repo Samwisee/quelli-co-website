@@ -3,11 +3,58 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>QUELLI & CO — Emotional Intelligence for Real Life</title>
+    <title>QUELLI & CO  Emotional Intelligence for Real Life</title>
     <meta
       name="description"
       content="Science-informed tools, a friendly podcast, and a practical curriculum for emotional intelligence."
     />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="/" />
+    <meta
+      property="og:title"
+      content="QUELLI & CO — Emotional Intelligence for Real Life"
+    />
+    <meta
+      property="og:description"
+      content="Science-informed tools, a friendly podcast, and a practical curriculum for emotional intelligence."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="assets/hero_image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="QUELLI & CO — Emotional Intelligence for Real Life"
+    />
+    <meta
+      name="twitter:description"
+      content="Science-informed tools, a friendly podcast, and a practical curriculum for emotional intelligence."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/hero.png" />
+    <link rel="apple-touch-icon" href="assets/hero.png" />
+
+    <!-- Structured data (Organization + WebSite) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "QUELLI & CO",
+            "url": "/",
+            "description": "Emotional intelligence tools, podcast, and curriculum.",
+            "logo": "assets/hero.png"
+          },
+          {
+            "@type": "WebSite",
+            "url": "/",
+            "name": "QUELLI & CO",
+            "description": "Science-informed tools, a friendly podcast, and a practical curriculum for emotional intelligence."
+          }
+        ]
+      }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,8 +65,14 @@
     />
 
     <!-- Styles -->
+    <link rel="preload" href="assets/css/theme.css" as="style" />
     <link rel="stylesheet" href="assets/css/theme.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
+    <!-- Rive runtime (loads the .riv player) -->
+    <script
+      src="https://unpkg.com/@rive-app/canvas@latest/rive.min.js"
+      defer
+    ></script>
   </head>
   <body class="site">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -78,7 +131,26 @@
 
           <!-- Figma hero geometry (responsive recreation) -->
           <div class="hero__art" aria-hidden="true">
-            <img class="hero__img" src="assets/hero_image.png" alt="" />
+            <!-- Rive animation canvas (decorative) -->
+            <canvas
+              id="look-rive"
+              class="hero__rive"
+              aria-hidden="true"
+            ></canvas>
+
+            <picture>
+              <source
+                srcset="assets/hero_image.png"
+                media="(min-width:720px)"
+              />
+              <img
+                class="hero__img"
+                src="assets/hero.png"
+                alt="Quelli & Co - illustrative hero"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </section>
@@ -410,6 +482,6 @@
       </div>
     </footer>
 
-    <script src="assets/site.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
   </body>
 </html>

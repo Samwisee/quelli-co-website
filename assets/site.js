@@ -58,6 +58,44 @@ window.site = (function () {
     updateDots();
   });
 
+  // Add keyboard navigation and reduced-motion awareness for carousels
+  (function enhanceCarousels() {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+      const track = carousel.querySelector("[data-track]");
+      if (!track) return;
+
+      // Keyboard: left/right to navigate when focus is within carousel
+      carousel.addEventListener("keydown", (ev) => {
+        if (ev.key === "ArrowRight") {
+          ev.preventDefault();
+          const stepX =
+            (track.children[0]?.offsetWidth || track.clientWidth) + 18;
+          track.scrollBy({
+            left: stepX,
+            behavior: prefersReduced ? "auto" : "smooth",
+          });
+        }
+        if (ev.key === "ArrowLeft") {
+          ev.preventDefault();
+          const stepX =
+            (track.children[0]?.offsetWidth || track.clientWidth) + 18;
+          track.scrollBy({
+            left: -stepX,
+            behavior: prefersReduced ? "auto" : "smooth",
+          });
+        }
+      });
+
+      // make track focusable for keyboard use
+      track.tabIndex = 0;
+      track.setAttribute("role", "region");
+      track.setAttribute("aria-label", "carousel items");
+    });
+  })();
+
   // Faux newsletter submission (swap with real POST later)
   api.subscribe = function (e) {
     e.preventDefault();
